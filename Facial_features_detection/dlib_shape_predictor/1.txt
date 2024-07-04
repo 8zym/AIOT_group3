@@ -1,0 +1,1 @@
+You can download shape_predictor_68_face_landmarks.dat.bz2 in http://dlib.net/files/shape_predictor_68_face_landmarks.dat.bz2
