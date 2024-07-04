@@ -3,8 +3,10 @@ It's about faculty-driving detection project.
 
 ## Driver-Drowsiness-Detection
 
-To run the project: python Driver Drowsiness Detection.py   \par 
-For environment: pip install -r Requirements.txt   \par 
+To run the project: python Driver Drowsiness Detection.py   
+
+For environment: pip install -r Requirements.txt   
+
 TBC
 
 ## Heart_rate_detection
