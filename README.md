@@ -14,7 +14,14 @@ original data in dir data
 
 processed data in dir processed_data
 
+combined final data in dir processed_final_data
 
+main.py is the file for training K-means model
 
+predict.py is the file for using K-means model to predict
+
+other files are used for processing data
+
+kmeans_model.pkl is the trained model
 ## weather_based_detection
 TBC
