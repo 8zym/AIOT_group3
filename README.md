@@ -10,7 +10,10 @@ For environment: pip install -r Requirements.txt
 TBC
 
 ## Heart_rate_detection
-TBC
+original data in dir data
+processed data in dir processed_data
+
+
 
 ## weather_based_detection
 TBC
