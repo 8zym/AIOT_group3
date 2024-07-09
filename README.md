@@ -25,3 +25,15 @@ other files are used for processing data
 kmeans_model.pkl is the trained model
 ## weather_based_detection
 TBC
+
+## posture_based_analysis
+
+To obtain the training and testing data, run unzip state-farm-distracted-driver-detection in data dir
+
+The trained data is stored in saved_model dir
+
+main.py is used for training data 
+
+prediction.py is used for prediction
+
+To apply the model in application, you need to some changes in prediction of the function form and file name.
