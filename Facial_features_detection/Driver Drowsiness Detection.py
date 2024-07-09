@@ -29,6 +29,7 @@ vs = VideoStream(src=0).start()
 time.sleep(2.0)
 
 # 400x225 to 1024x576
+Fatigue = 0
 frame_width = 1024
 frame_height = 576
 
@@ -48,8 +49,17 @@ image_points = np.array([
 
 EYE_AR_THRESH = 0.25
 MOUTH_AR_THRESH = 0.79
+MOUTH_AR_THRESH_FRAMES = 3
 EYE_AR_CONSEC_FRAMES = 3
-COUNTER = 0
+COUNTER = 0  #眨眼帧计数器
+TOTAL = 0  #眨眼总总数
+mCOUNTER = 0 #打哈欠帧计数器
+mTOTAL = 0 #打哈欠总数
+
+
+Roll = 0 #整个循环内的帧次数
+Rolleye = 0 #循环内闭眼帧数
+Rollmouth = 0 #循环内打哈欠数
 
 # grab the indexes of the facial landmarks for the mouth
 (mStart, mEnd) = (49, 68)
@@ -105,9 +115,12 @@ while True:
         # threshold, and if so, increment the blink frame counter
         if ear < EYE_AR_THRESH:
             COUNTER += 1
+            Rolleye += 1
             # if the eyes were closed for a sufficient number of times
             # then show the warning
             if COUNTER >= EYE_AR_CONSEC_FRAMES:
+                TOTAL += 1
+                COUNTER = 0
                 cv2.putText(frame, "Eyes Closed!", (500, 20),
                             cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 255), 2)
             # otherwise, the eye aspect ratio is not below the blink
@@ -129,9 +142,25 @@ while True:
 
         # Draw text if mouth is open
         if mar > MOUTH_AR_THRESH:
+            mCOUNTER += 1
+            Rollmouth += 1
             cv2.putText(frame, "Yawning!", (800, 20),
                         cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 255), 2)
+        else:
+            if mCOUNTER >= MOUTH_AR_THRESH_FRAMES:
+                mTOTAL += 1
+                mCOUNTER = 0
 
+        Roll += 1
+
+        if Roll == 150:
+            perclos = (Rolleye/Roll) + (Rollmouth/Roll)*0.2
+            if perclos > 0.38:
+                Fatigue = 1
+                
+            Roll = 0
+            Rolleye = 0
+            Rollmouth = 0
 
         # loop over the (x, y)-coordinates for the facial landmarks
         # and draw each of them
@@ -214,6 +243,9 @@ while True:
         # extract the mouth coordinates, then use the
         # coordinates to compute the mouth aspect ratio
     # show the frameq
+    if Fatigue == 1:
+        cv2.putText(frame, "Fatigue!", (800, 100),
+            cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 255), 2)
     cv2.imshow("Frame", frame)
     key = cv2.waitKey(1) & 0xFF
 
