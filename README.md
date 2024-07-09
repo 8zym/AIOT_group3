@@ -7,8 +7,6 @@ To run the project: python Driver Drowsiness Detection.py
 
 For environment: pip install -r Requirements.txt   
 
-TBC
-
 ## Heart_rate_detection
 original data in dir data
 
