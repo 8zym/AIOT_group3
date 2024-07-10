@@ -8,11 +8,11 @@ from sklearn.cluster import KMeans
 from sklearn.metrics import silhouette_score, adjusted_rand_score, normalized_mutual_info_score
 
 # 读取数据
-file_root = "/root/AIOT/project/heart_rate_detection/processed_final_data/final_1.csv"
+file_root = "/root/AIOT/project/heart_rate_detection/processed_final_data/final.csv"
 df = pd.read_csv(file_root)
 
 # 选择要用于降维和聚类的特征
-features = [ 'LF Power','LF_div_HF', 'alphas']
+features = ['LF_div_HF', 'alphas']
 X = df[features].values
 
 # 标准化数据
@@ -58,7 +58,7 @@ if 'True_Label' in df.columns:
     print(f"Normalized Mutual Information (NMI): {nmi_score}")
 
 # 保存KMeans模型
-joblib.dump(kmeans, 'kmeans_model_pca.pkl')
+joblib.dump(kmeans, 'kmeans_model_pca_final.pkl')
 
 # 可视化聚类结果
 plt.scatter(X_pca[:, 0], X_pca[:, 1], c=labels, cmap='prism')

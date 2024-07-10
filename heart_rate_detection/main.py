@@ -5,12 +5,12 @@ from sklearn.cluster import KMeans
 from sklearn.metrics import silhouette_score, adjusted_rand_score, normalized_mutual_info_score
 import matplotlib.pyplot as plt
 
-file_root = "/root/AIOT/project/heart_rate_detection/processed_final_data/final_1.csv"
+file_root = "/root/AIOT/project/heart_rate_detection/processed_final_data/final.csv"
 data = pd.read_csv(file_root)
 
 
 # 选择你认为重要的特征
-features = [ 'LF_div_HF', 'alphas']
+features = ['LF_div_HF','alphas']
 
 # 提取特征
 X = data[features]
@@ -47,4 +47,4 @@ if 'True_Label' in data.columns:
     print(f"Adjusted Rand Index (ARI): {ari_score}")
     print(f"Normalized Mutual Information (NMI): {nmi_score}")
 
-joblib.dump(kmeans, 'kmeans_model.pkl')
+joblib.dump(kmeans, 'kmeans_model_all.pkl')

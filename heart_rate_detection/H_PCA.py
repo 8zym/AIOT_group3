@@ -9,7 +9,7 @@ from sklearn.metrics import silhouette_score
 import joblib
 
 # 读取数据
-file_root = "/root/AIOT/project/heart_rate_detection/processed_final_data/final_1.csv"
+file_root = "/root/AIOT/project/heart_rate_detection/processed_final_data/final.csv"
 data = pd.read_csv(file_root)
 
 pca = PCA(n_components=2)
@@ -51,7 +51,7 @@ sil_score = silhouette_score(X_pca, clusters)
 print(f"Silhouette Score: {sil_score}")
 
 # 保存模型
-joblib.dump(Z, 'H_model_pca_a.pkl')
+joblib.dump(Z, 'H_model_pca_a_final.pkl')
 
 # 打印前几行数据，验证结果
 print(data.head())

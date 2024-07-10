@@ -8,7 +8,7 @@ from sklearn.metrics import silhouette_score
 import joblib
 
 # 读取数据
-file_root = "/root/AIOT/project/heart_rate_detection/processed_final_data/final_1.csv"
+file_root = "/root/AIOT/project/heart_rate_detection/processed_final_data/final.csv"
 data = pd.read_csv(file_root)
 
 # 选择要用于聚类的特征
@@ -45,7 +45,7 @@ sil_score = silhouette_score(X_scaled, clusters)
 print(f"Silhouette Score: {sil_score}")
 
 # 保存模型
-joblib.dump(Z, 'Hierarchical_model_pca.pkl')
+joblib.dump(Z, 'Hierarchical_model_pca_final.pkl')
 
 # 打印前几行数据，验证结果
 print(data.head())
