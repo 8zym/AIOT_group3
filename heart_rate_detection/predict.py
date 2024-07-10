@@ -3,7 +3,7 @@ import pandas as pd
 from sklearn.preprocessing import StandardScaler
 
 # 加载模型
-kmeans = joblib.load('kmeans_model.pkl')
+kmeans = joblib.load('model/kmeans_model.pkl')
 
 # 加载和预处理新数据
 new_data_file = "/root/AIOT/project/heart_rate_detection/processed_final_data/final_2.csv"
