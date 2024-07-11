@@ -52,3 +52,11 @@ EMQX in personal computer.
 + ESP32: Connects to a Temperature-Humidity sensor
 + PC: Serves as database and controller based on trained model
 + Web App: Serves as front end
+
+## Other settings
+### rpi1
+name: pi
+password: raspberry
+### rpi2
+name: pi2
+password: raspberry
