@@ -19,25 +19,6 @@ def calculate_dfa(Y, scale_range):
         F.append(np.sqrt(np.mean(np.array(rms)**2)))
     return F
 
-def calculate_alpha1_over_windows_old(data, window_size, step_size, column_name):
-    alphas = []
-    times = []
-    scale_range = range(4, window_size // 4)
-    num_steps = (len(data) - window_size) // step_size + 1
-    
-    for i in range(num_steps):
-        window_data = data[column_name].iloc[i*step_size : i*step_size + window_size]
-        if window_data.isna().sum() == 0:
-            Y = np.cumsum(window_data - np.mean(window_data))
-            F = calculate_dfa(Y, scale_range)
-            log_scale = np.log(scale_range)
-            log_F = np.log(F)
-            alpha1, _ = np.polyfit(log_scale, log_F, 1)
-            alphas.append(alpha1)
-            times.append(data['TIME'].iloc[i*step_size + window_size // 2])
-    
-    return times, alphas
-
 def calculate_alpha1_over_windows(time_data, hr_data, interval=3):
     alphas = []
     times = []

@@ -1,0 +1,131 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Group 3: Monitor System</title>
+        <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+        <script src="js/jquery-3.2.0.min.js" charset="utf-8" type="text/javascript"></script>
+        <script src="js/echarts.min.js" charset="utf-8" type="text/javascript"></script>
+        <script src="js/utils.js" charset="utf-8" type="text/javascript"></script>
+        <script type="text/javascript" src="js/vue.js"></script>
+        
+        <style>
+            body {
+                background-image: url('img/background_t.jpg');
+                background-size: cover;
+                background-repeat: no-repeat;
+                background-attachment: fixed;
+                font-family: Arial, sans-serif;
+                margin: 0;
+                padding: 0;
+                color: #fff;
+            }
+            
+            #login {
+                width: 320px;
+                height: 400px;
+                background: rgba(0, 0, 0, 0.5); /* 调整透明度为0.5 */
+                margin: 100px auto;
+                padding: 20px;
+                border-radius: 10px;
+                text-align: center;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+                border: 2px solid transparent;
+                transition: border-color 0.3s ease-in-out;
+                margin: 200px auto 0; /* 调整上边距为200px */
+                margin-left: 400px; /* 调整左边距为400px */
+              
+    
+            }
+            
+            #login:hover {
+                border-color: #fff; /* 边框颜色在鼠标悬停时变为白色 */
+            }
+            
+            h1 {
+                font-size: 32px;
+                margin-bottom: 20px;
+            }
+            
+            input, select {
+                width: 280px;
+                height: 40px;
+                border: none;
+                border-bottom: 2px solid #fff;
+                background: rgba(255, 255, 255, 0.2); /* 调整下拉框背景透明度为0.2 */
+                margin-bottom: 20px;
+                padding-left: 10px;
+                font-size: 16px;
+                color: #fff;
+                outline: none;
+            }
+            
+            input::placeholder {
+                color: #ccc;
+            }
+            
+            select {
+                color: #000; /* 调整下拉框选项文字颜色为黑色 */
+            }
+            
+            button {
+                width: 100px;
+                height: 40px;
+                background: #fff;
+                border: none;
+                margin-top: 20px;
+                font-size: 18px;
+                color: #242222;
+                font-family: 'Courier New', Courier, monospace;
+                font-weight: bold;
+                cursor: pointer;
+                transition: background-color 0.3s ease-in-out;
+            }
+            
+            button:hover {
+                background-color: #eee; /* 按钮鼠标悬停时的背景色 */
+            }
+            
+            .register-link {
+                display: block;
+                margin-top: 20px;
+                font-size: 16px;
+                color: #ccc;
+                text-decoration: none;
+            }
+            
+            .register-link:hover {
+                color: #fff;
+            }
+            
+            .error-message {
+                color: red;
+                margin-top: 10px;
+            }
+        </style>
+    </head>
+<body>
+    <div id="login">
+        <h1>REGISTER</h1><br>
+        <form th:action="@{/security/login}" method="post" th:object="${user}">
+            <input type="text" class="input1" name="userNo" placeholder="用户账号" required pattern=".{6,}" title="用户账号至少6个字符">
+            <br><br>
+            <input type="password" class="input2" name="userPwd" placeholder="用户密码" required pattern=".{8,}" title="用户密码至少8个字符">
+            <br><br>
+            <select name="userRole" class="input3" required>
+                <option value="" disabled selected>请选择身份</option>
+                <option value="driver">driver</option>
+                <option value="student">student</option>
+                <option value="other">else</option>
+            </select>
+            <br><br>
+            <button class="btn btn-primary" type="submit">register</button>
+        </form>
+
+        <center>
+            <h5>User Register Page</h5>
+            <h5>（版本:Beta1.0 Build:#1 2024-07-05）</h5>
+        </center>
+    </body>
+    </html>
+    

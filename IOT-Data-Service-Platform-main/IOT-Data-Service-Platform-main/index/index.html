@@ -1,0 +1,420 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Group 3:Monitor System</title>
+<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+<script src="js/jquery-3.2.0.min.js" charset="utf-8" type="text/javascript"></script>
+<script src="js/echarts.min.js" charset="utf-8" type="text/javascript"></script>
+<script src="js/utils.js" charset="utf-8" type="text/javascript"></script>
+<script src="https://unpkg.com/mqtt@5.6.1/dist/mqtt.min.js"></script>
+<script src="js/mqtt-data-update.js" charset="utf-8" type="text/javascript"></script>
+<script type="text/javascript" src="js/vue.js"></script>
+
+<link rel="stylesheet" href="styles.css">
+
+<body>
+    <div class="wpbox">
+
+    
+        <div class="bnt">
+            <div class="topbnt_left fl">
+                <ul>
+                    <li><a href="http://127.0.0.1:5000/get_spots_status">疲劳状态</a></li>
+                    <li><a href="http://127.0.0.1:5000/get_spots_status">安防设备</a></li>
+                    <li><a href="http://127.0.0.1:5000/get_spots_status">水电费用</a></li>
+                </ul>
+            </div>
+            <h1 class="tith1 fl">Monitor System</h1>
+            <div class=" fr topbnt_right">
+                <ul>
+                    <li><a href="http://127.0.0.1:5000/get_spots_status">社区电商</a></li>
+                    <li><a href="http://127.0.0.1:5000/get_spots_status">智慧物业</a></li>
+                    <li><a href="http://127.0.0.1:5000/get_spots_status">小区信息</a></li>
+                </ul>
+                </ul>
+            </div>
+        </div>
+        <!-- bnt end -->
+        <!--<div class="left1">
+            <div class="aleftboxttop">
+                <h2 class="tith2">疲劳状态分析</h2>
+                <div class="lefttoday_tit" style=" height:8%">
+                    <p class="fl"></p>
+                    <p class="fr"></p>
+                </div>
+                <div class="lefttoday_number">
+                    <div class="widget-inline-box text-center fl">
+                        <p>总疲劳度</p>
+                        <h3 class="ceeb1fd">54</h3>
+                        <h4 class="text-muted pt6">环比<img src="img/iconup.png" height="16" />2%</h4>
+                    </div>
+                    <div class="widget-inline-box text-center fl">
+                        <p>眨眼频率</p>
+                        <h3 class="c24c9ff">54</h3>
+                        <h4 class="text-muted pt6">环比<img src="img/icondown.png" height="16" />3%</h4>
+                    </div>
+                    <div class="widget-inline-box text-center fl">
+                        <p>哈欠数</p>
+                        <h3 class="cffff00">4</h3>
+                        <h4 class="text-muted pt6">环比<img src="img/icondown.png" height="16" />3%</h4>
+                    </div>
+                    <div class="widget-inline-box text-center fl">
+                        <p>头部倾斜</p>
+                        <h3 class="c11e2dd">4</h3>
+                        <h4 class="text-muted pt6">环比<img src="img/icondown.png" height="16" />3%</h4>
+                    </div>
+                </div>-->
+                <div class="left1">
+                    <div class="aleftboxttop">
+                        <h2 class="tith2">疲劳状态分析</h2>
+                        <div class="lefttoday_tit" style=" height:8%">
+                            <p class="fl"></p>
+                            <p class="fr"></p>
+                        </div>
+                        <div class="lefttoday_number">
+                            <div class="widget-inline-box text-center fl">
+                                <p>总疲劳度</p>
+                                <h3 class="ceeb1fd" id="total-fatigue"></h3>
+                                <h4 class="text-muted pt6">环比<img src="img/iconup.png" height="16" />2%</h4>
+                            </div>
+                            <div class="widget-inline-box text-center fl">
+                                <p>眨眼频率</p>
+                                <h3 class="c24c9ff" id="blink-frequency"></h3>
+                                <h4 class="text-muted pt6">环比<img src="img/icondown.png" height="16" />3%</h4>
+                            </div>
+                            <div class="widget-inline-box text-center fl">
+                                <p>哈欠数</p>
+                                <h3 class="cffff00" id="yawn-count"></h3>
+                                <h4 class="text-muted pt6">环比<img src="img/icondown.png" height="16" />3%</h4>
+                            </div>
+                            <div class="widget-inline-box text-center fl">
+                                <p>头部倾斜</p>
+                                <h3 class="c11e2dd" id="head-tilt"></h3>
+                                <h4 class="text-muted pt6">环比<img src="img/icondown.png" height="16" />3%</h4>
+                            </div>
+                        </div>
+              
+                <!-- lefttoday_number end -->
+               
+            </div>
+            <div class="aleftboxtmidd">
+                <h2 class="tith2">车辆行驶状态</h2>
+                <div class="lefttoday_tit height ht">
+                    <p class="fl"></p>
+                    <p class="fr"></p>
+                </div>
+                <div id="aleftboxtmidd" class="aleftboxtmiddcont"></div>
+            </div>
+            
+            <div class="aleftboxtbott">
+                <h2 class="tith2">设置区域</h2>
+                <div class="lefttoday_tit height">
+                    <p class="fl">地区：云大小区</p>
+                    <p class="fr">时间段：2023-04;月</p>
+                </div>
+                <div id="settings-container" class="settings-container">
+                    <div class="setting-item">
+                        <label for="volume-slider">蜂鸣器音量调整:</label>
+                        <input type="range" id="volume-slider" min="1" max="10" value="5">
+                        <span id="volume-value">5</span>
+                    </div>
+                    <div class="setting-item">
+                        <label for="sensitivity-slider">疲劳检测灵敏度调整:</label>
+                        <input type="range" id="sensitivity-slider" min="1" max="10" value="5">
+                        <span id="sensitivity-value">5</span>
+                    </div>
+                    <div class="setting-item">
+                        <label>LED状态:</label>
+                        <button id="led-on-button">开启</button>
+                        <button id="led-off-button">关闭</button>
+                    </div>
+                    <div class="setting-item">
+                        <label>蜂鸣器状态:</label>
+                        <button id="buzzer-on-button">开启</button>
+                        <button id="buzzer-off-button">关闭</button>
+                    </div>
+                </div>
+            </div>            
+        </div>  
+        <!--  left1 end -->
+        
+        <!--<div class="mrbox">
+            <div class="mrbox_topmidd" style="width: 69%;">
+                <div class="amiddboxttop">
+                    <h2 class="tith2 pt1">监控实时监测</h2>
+                    <div class="amiddboxttop_map fl">
+                            <div id="app">
+                            <div class="parking-lot">
+                                    <div v-for="(spot, index) in spots" :key="index" :class="['parking-spot', spot.status]">
+                                {{ spot.id }}
+                                </div>
+                            </div>
+                            </div>
+                    </div>
+                </div>-->
+                <div class="mrbox">
+                    <div class="mrbox_topmidd" style="width: 69%;">
+                        <div class="amiddboxttop">
+                            <h2 class="tith2 pt1">监控实时监测</h2>
+                            <div class="amiddboxttop_map fl">
+                                <!-- 在这里插入视频流 -->
+                                <img src="http://127.0.0.1:5556/video_feed" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!DOCTYPE html>
+
+                <!--  amiddboxttop end-->
+                <div class="amidd_bott">
+                    <div class="amiddboxtbott1 fl">
+                        <h2 class="tith2 pt1">社区电商</h2>
+                        <div id="amiddboxtbott1" class="amiddboxtbott1content"></div>
+                    </div>
+
+                    <div class="amiddboxtbott2 fl">
+                        <h2 class="tith2 pt1">智慧物业</h2>
+                        <div id="amiddboxtbott2" class="amiddboxtbott2content"></div>
+                    </div>
+                </div>
+                <!-- amidd_bott end -->
+            </div>
+            <!-- mrbox_top end -->
+            <div class="mrbox_top_right">
+                <div class="arightboxtop">
+                    <h2 class="tith2">智慧停车</h2>
+                    <div class="lefttoday_tit">
+                        <p class="fl">地区：云大小区</p>
+                        <p class="fr">时间段：2023-04-10</p>
+                    </div>
+                    <div class="zhtc_table_title">
+                        <div>用户</div>
+                        <!-- 用户 -->
+                        <div>抓取时间</div>
+                        <!-- 抓取时间 -->
+                        <div>图片</div>
+                        <!-- 图片 -->
+                        <div>疲惫状态</div>
+                        <!-- 疲惫状态 -->
+                    </div>
+                    <div id="zhtc_table" class="left2_table">
+                        <ul>
+                            <li>
+                                <p class="fl"><b>云大小区A区</b>
+                                </p>
+                                <div class="zhtc_table_li_content">
+                                    <div>甘A09B12</div>
+                                    <div>2023-04-01 <br/> 10:09:40</div>
+                                    <div><img width="80" src="img/carLicensePlate/琼A180Q8.jpg" /></div>
+                                    <div>中度疲惫</div>
+                                </div>
+                            </li>
+                            <li class="bg">
+                                <p class="fl"><b>云大小区A区</b>
+                                </p>
+                                <div class="zhtc_table_li_content">
+                                    <div>甘A9T528</div>
+                                    <div>2023-04-02 <br/> 17:48:15</div>
+                                    <div><img width="80" src="img/carLicensePlate/甘A9T528.jpg" /></div>
+                                    <div>正常</div>
+                                </div>
+                            </li>
+                            <li>
+                                <p class="fl"><b>云大小区B区</b>
+                                </p>
+                                <div class="zhtc_table_li_content">
+                                    <div>甘A17J18</div>
+                                    <div>2023-04-02 <br/> 20:26:54</div>
+                                    <div><img width="80" src="img/carLicensePlate/甘A17J18.jpg" /></div>
+                                    <div>中度疲惫</div>
+                                </div>
+                            </li>
+                            <li class="bg">
+                                <p class="fl"><b>云大小区B区</b>
+                                </p>
+                                <div class="zhtc_table_li_content">
+                                    <div>甘A17J18</div>
+                                    <div>2023-04-03 <br/> 18:26:35</div>
+                                    <div><img width="80" src="img/carLicensePlate/甘A17J18 (1).jpg" /></div>
+                                    <div>轻度疲惫</div>
+                                </div>
+                            </li>
+                            <li>
+                                <p class="fl"><b>云大小区A区</b>
+                                </p>
+                                <div class="zhtc_table_li_content">
+                                    <div>甘A17M35</div>
+                                    <div>2023-04-04 <br/> 09:48:41</div>
+                                    <div><img width="80" src="img/carLicensePlate/甘A17M35.jpg" /></div>
+                                    <div>正常</div>
+                                </div>
+                            </li>
+                            <li class="bg">
+                                <p class="fl"><b>云大小区B区</b>
+                                </p>
+                                <div class="zhtc_table_li_content">
+                                    <div>甘A076A6</div>
+                                    <div>2023-04-05 <br/> 12:05:48</div>
+                                    <div><img width="80" src="img/carLicensePlate/甘A076A6.jpg" /></div>
+                                    <div>正常</div>
+                                </div>
+                            </li>
+                            <li>
+                                <p class="fl"><b>云大小区B区</b>
+                                </p>
+                                <div class="zhtc_table_li_content">
+                                    <div>甘A76L77</div>
+                                    <div>2023-04-07 <br/> 13:09:40</div>
+                                    <div><img width="80" src="img/carLicensePlate/甘A76L77.jpg" /></div>
+                                    <div>重度疲惫</div>
+                                </div>
+                            </li>
+                            <li class="bg">
+                                <p class="fl"><b>云大小区A区</b>
+                                </p>
+                                <div class="zhtc_table_li_content">
+                                    <div>甘A096R2</div>
+                                    <div>2023-04-09 <br/> 15:36:49</div>
+                                    <div><img width="80" src="img/carLicensePlate/甘A096R2.jpg" /></div>
+                                    <div>中度疲惫</div>
+                                </div>
+                            </li>
+                            <li>
+                                <p class="fl"><b>云大小区B区</b>
+                                </p>
+                                <div class="zhtc_table_li_content">
+                                    <div>甘A497D9</div>
+                                    <div>202304-09 <br/> 08:35:46</div>
+                                    <div><img width="80" src="img/carLicensePlate/甘A497D9.jpg" /></div>
+                                    <div>轻度疲惫</div>
+                                </div>
+                            </li>
+
+
+                        </ul>
+                    </div>
+
+                </div>
+                <div class="arightboxbott">
+                    <h2 class="tith2 ">驾驶环境</h2>
+                    <div class="lefttoday_tit">
+                        <p class="fl"></p>
+                        <p class="fr"></p>
+                    </div>
+                    <div id="arightboxbott" class="arightboxbottcont"></div>
+                </div>
+            </div>
+            <!-- mrbox_top_right end -->
+        </div>
+
+    </div>
+    </div>
+
+    <script type="text/javascript" src="js/车辆行驶状态.js"></script>
+
+    <script type="text/javascript" src="js/按钮设置.js"></script>
+
+    <script type="text/javascript" src="js/社区电商.js"></script>
+
+    <script type="text/javascript" src="js/智慧物业.js"></script>
+
+    <script type="text/javascript" src="js/驾驶环境.js"></script>
+
+    <script type="text/javascript" src="js/智慧停车.js"></script>
+
+    <!--<script type="text/javascript" src="js/监控实时监测.js"></script>-->
+
+    <!--<script>
+        /**
+         * 修改为你的云服务器的地址和端口
+         */
+        const connectUrl = 'ws://192.168.71.159:8083/mqtt';
+
+        const options = {
+            keepalive: 60,
+            clientId: 'mqttjs_' + Math.random().toString(16).substring(2, 8),
+            clean: true,
+            connectTimeout: 30 * 1000,
+            username: 'emqx_test', // 如果需要认证的话
+            password: 'emqx_test', // 如果需要认证的话
+            reconnectPeriod: 1000,
+        }
+
+        const topic = '/WebSocket/mqtt'
+        const payload = 'WebSocket mqtt test'
+        const qos = 0
+
+        console.log('connecting mqtt client')
+        const client = mqtt.connect(connectUrl, options)
+
+        client.on('error', (err) => {
+            console.log('Connection error: ', err)
+            client.end()
+        })
+
+        client.on('reconnect', () => {
+            console.log('Reconnecting...')
+        })
+
+        client.on('connect', () => {
+            console.log('Client connected:' + client.options.clientId)
+
+            client.subscribe(topic, { qos }, (error) => {
+                if (error) {
+                    console.log('Subscribe error:', error)
+                    return
+                }
+                console.log(`Subscribe to topic ${topic}`)
+            })
+
+            client.publish(topic, payload, { qos }, (error) => {
+                if (error) {
+                    console.error(error)
+                }
+            })
+        })
+
+        client.on('message', (topic, payload) => {
+            console.log(
+                'Received Message: ' + payload.toString() + '\nOn topic: ' + topic
+            )
+        })
+    </script>-->
+
+    <!-- 弹窗部分 -->
+    <div class="overlay" id="overlay">
+        <div class="popup">
+            <h2>System Detected Fatigue State</h2>
+            <p>Do you want to switch to anti-fatigue mode?</p>
+            <button id="yesButton">YES</button>
+            <button id="noButton">NO<button>
+        </div>
+    </div>
+    
+    <!-- JavaScript 代码 -->
+    <script src="js/jquery-3.2.0.min.js"></script>
+    <script>
+        // 等待页面加载完成后，显示弹窗
+        $(document).ready(function() {
+            setTimeout(function() {
+                $('#overlay').fadeIn();
+            }, 5000); // 5000毫秒 = 5秒
+        });
+
+        // 点击是或否按钮的处理逻辑
+        $('#yesButton').click(function() {
+            // 这里可以添加点击是后的逻辑
+            alert('You chose Yes, switching to anti-fatigue mode...');
+            $('#overlay').fadeOut();
+        });
+
+        $('#noButton').click(function() {
+            // 这里可以添加点击否后的逻辑
+            alert('You chose No, maintaining current state.');
+            $('#overlay').fadeOut();
+        });
+    </script>
+</div>
+
+</body>
+
+</html>
