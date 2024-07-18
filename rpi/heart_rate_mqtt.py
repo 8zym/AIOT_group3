@@ -19,39 +19,29 @@ def on_message(client, userdata, msg):
 
 def handle_heartrate(chl):
     global count
-    global doCounting
     global startTime
 
     count += 1
+    currentTime = time.time()
     
-    if not doCounting:
-        if count == 10:
-            print('Starting actual counting...')
-            startTime = time.time()
-            count = 0
-            doCounting = True
-
-    if doCounting:
-        currentTime = time.time()
-        if currentTime - startTime > 15:
-            if count > 0:
-                heart_rate = count * 4
-                message = {"heart_rate": heart_rate}
-                json_message = json.dumps(message)  # Convert to JSON format
-                print(f'Heart rate is {heart_rate}')
-                result = client.publish(topic_publish, json_message)
-                status = result[0]
-                if status == 0:
-                    print(f"Sent `{json_message}` to topic `{topic_publish}`")
-                else:
-                    print(f"Failed to send message to topic {topic_publish}")
-            startTime = time.time()
-            count = 0
+    if currentTime - startTime > 15:
+        if count > 0:
+            heart_rate = count * 4
+            message = {"heart_rate": heart_rate}
+            json_message = json.dumps(message)  # Convert to JSON format
+            print(f'Heart rate is {heart_rate}')
+            result = client.publish(topic_publish, json_message)
+            status = result[0]
+            if status == 0:
+                print(f"Sent `{json_message}` to topic `{topic_publish}`")
+            else:
+                print(f"Failed to send message to topic {topic_publish}")
+        startTime = time.time()
+        count = 0
 
 # Pin definition
 heartPin = 16
 count = 0
-doCounting = False
 startTime = time.time()
 enable_doMeasureHeartRate = True
 
@@ -79,20 +69,9 @@ try:
 
     client.loop_start()
 
+    GPIO.add_event_detect(heartPin, GPIO.RISING, callback=handle_heartrate)
+
     while True:
-        if enable_doMeasureHeartRate:
-            if not doCounting:
-                print('Measuring heart rate...')
-                doCounting = True
-                count = 0
-                startTime = time.time()
-                GPIO.add_event_detect(heartPin, GPIO.RISING, callback=handle_heartrate)
-            else:
-                print('Stopped...')
-                doCounting = False
-                GPIO.remove_event_detect(heartPin)
-            enable_doMeasureHeartRate = False
-        
         time.sleep(0.2)
 
 except KeyboardInterrupt:
