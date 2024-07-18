@@ -15,21 +15,35 @@ port = 1883
 topic = '/posture_camera'  # Replace with your desired topic
 username = 'pi1'
 password = 'raspberry'
-client_id='picamera'
+client_id = 'raspberrypicamera'
+
+# Flag to track connection state
+connected = False
 
 # Define MQTT callbacks
 def on_connect(client, userdata, flags, rc):
-    print("Connected with result code "+str(rc))
+    global connected
+    print("Connected with result code " + str(rc))
+    if rc == 0:
+        connected = True
+        client.subscribe(topic)  # Subscribe to topic on successful connection
+        client.loop_start()  # Start the loop after successful connection
+    else:
+        connected = False
 
 def on_message(client, userdata, msg):
-    print("Received message: "+str(msg.payload))
+    print("Received message: " + str(msg.payload))
 
+# Initialize MQTT client
 client = mqtt.Client(client_id)
 client.username_pw_set(username, password)
 client.on_connect = on_connect
 client.on_message = on_message
-client.connect(broker, port, 600)
-client.loop_start()
+
+# Protect connect call with a check to avoid duplicate connections
+if not connected:
+    print("Connecting to broker...")
+    client.connect(broker, port)  # Only connect once here
 
 # Initialize the camera
 picam2 = Picamera2()
@@ -49,23 +63,24 @@ try:
             stream = io.BytesIO()
             print('Converting image to bytes using PIL...')
             img = Image.fromarray(buffer)
-            img.save(stream, format='JPEG')
+            img=img.resize((800,600))
+            img.save(stream, format='JPEG',quality=50)
             stream.seek(0)
             image_data = stream.read()
             print('Image converted to bytes successfully')
-            filename=f"image_{uuid.uuid4()}.jpg"
-            image_base64=base64.b64encode(image_data).decode('utf-8')
+            filename = f"image_{uuid.uuid4()}.jpg"
+            image_base64 = base64.b64encode(image_data).decode('utf-8')
             
             payload = {
-                  "image_name":filename,
-                  "image_data":image_base64
+                "image_name": filename,
+                "image_data": image_base64
             }
-            payload_json=json.dumps(payload)
-            
-            # Publish file header
+            payload_json = json.dumps(payload)
+            print(payload_json)
+            # Publish file header with QoS=1
             client.publish(topic, payload=payload_json, qos=0)
             print('Image published successfully')
-            time.sleep(0.5)  # Ensure the header is sent first
+            time.sleep(10)  # Ensure the header is sent first
             
         except Exception as e:
             print(f"Error during image capture or sending: {e}")
