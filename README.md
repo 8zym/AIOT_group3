@@ -24,7 +24,24 @@ It's an faculty-driving detection project.
 * Steering wheel, toy or real
 
 ### SOFTWARE
-![image](https://github.com/user-attachments/assets/e0c94531-4fe5-421f-a372-6bd25b146d61)
+#### Raspberry Pi 1
+* posture_camera_publish.py
+* heart_rate_mqtt.py
+* light_detect_publish.py
+
+#### Raspberry Pi 2
+* mjpg_test.py
+* index.html
+* mqtt-data-update.js
+* mqtt_image_update.js
+* Heartrate_detection.py
+* microbit_subscribe_final.py
+
+#### ESP32
+* temp_hum_detect.py
+
+#### Micro:bit
+* alarm_subscribe.js
 
 ## OVERVIEW OF PROBLEM STATEMENT
 ### DESCRIPTION OF PROBLEM
