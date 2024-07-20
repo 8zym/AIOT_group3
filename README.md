@@ -8,6 +8,7 @@ Group3 Team members:
 * MA MENGMENG
 ---
 It's an faculty-driving detection project.
+
 ![AIoTGroup3 Portrait Poster (Template A1) pptx](https://github.com/user-attachments/assets/8f26c8a9-6ae5-43e2-af77-03144a16396e)
 
 ---
@@ -20,6 +21,10 @@ It's an faculty-driving detection project.
   * Heartrate sensor
   * Temp and humidity sensor
   * Light sensor
+* Steering wheel, toy or real
+
+### SOFTWARE
+
 ## OVERVIEW OF PROBLEM STATEMENT
 ### DESCRIPTION OF PROBLEM
 According to a survey by the American Foundation for Auto Traffic Safety, fatigued drivers account for up to 21 percent of traffic fatalities in the United States. To decline this proportion, Lots of researchers have focused on detecting fatigue driving in the past few decades, the latest progress includes active detection methods and passive detection methods. Among these methods, we are attracted by the active detection method based on facial features and driver posture. We want to use them as reference in combination with the AIoT.
