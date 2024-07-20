@@ -1,0 +1,8 @@
+/home/pi2/video_transport/index/dlib-19.24/build/temp.linux-aarch64-cpython-311/CMakeFiles/_dlib_pybind11.dir
+/home/pi2/video_transport/index/dlib-19.24/build/temp.linux-aarch64-cpython-311/CMakeFiles/edit_cache.dir
+/home/pi2/video_transport/index/dlib-19.24/build/temp.linux-aarch64-cpython-311/CMakeFiles/rebuild_cache.dir
+/home/pi2/video_transport/index/dlib-19.24/build/temp.linux-aarch64-cpython-311/pybind11_build/CMakeFiles/edit_cache.dir
+/home/pi2/video_transport/index/dlib-19.24/build/temp.linux-aarch64-cpython-311/pybind11_build/CMakeFiles/rebuild_cache.dir
+/home/pi2/video_transport/index/dlib-19.24/build/temp.linux-aarch64-cpython-311/dlib_build/CMakeFiles/dlib.dir
+/home/pi2/video_transport/index/dlib-19.24/build/temp.linux-aarch64-cpython-311/dlib_build/CMakeFiles/edit_cache.dir
+/home/pi2/video_transport/index/dlib-19.24/build/temp.linux-aarch64-cpython-311/dlib_build/CMakeFiles/rebuild_cache.dir

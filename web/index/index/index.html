@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Group 3: Monitor System</title>
+    <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <script src="js/jquery-3.2.0.min.js" charset="utf-8" type="text/javascript"></script>
+    <script src="js/echarts.min.js" charset="utf-8" type="text/javascript"></script>
+    <script src="js/utils.js" charset="utf-8" type="text/javascript"></script>
+    <script src="https://unpkg.com/mqtt@5.6.1/dist/mqtt.min.js"></script>
+    <script src="js/mqtt-data-update.js" charset="utf-8" type="text/javascript"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript" src="js/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="wpbox">
+        <div class="bnt">
+            <div class="topbnt_left fl">
+                <ul>
+                    <li><a href="http://127.0.0.1:5000/get_spots_status"></a></li>
+                    <li><a href="http://127.0.0.1:5000/get_spots_status"></a></li>
+                    <li><a href="http://127.0.0.1:5000/get_spots_status"></a></li>
+                </ul>
+            </div>
+            <h1 class="tith1 fl">Monitor System</h1>
+            <div class="fr topbnt_right">
+                <ul>
+                    <li><a href="http://127.0.0.1:5000/get_spots_status"></a></li>
+                    <li><a href="http://127.0.0.1:5000/get_spots_status"></a></li>
+                    <li><a href="http://127.0.0.1:5000/get_spots_status"></a></li>
+                </ul>
+            </div>
+        </div>
+        <!-- bnt end -->
+
+        <div class="left1">
+            <div class="aleftboxttop">
+                <h2 class="tith2">Fatigue State Detection</h2>
+                <div class="lefttoday_tit" style="height:8%">
+                    <p class="fl"></p>
+                    <p class="fr"></p>
+                </div>
+                <div class="lefttoday_number">
+                    <div class="widget-inline-box text-center fl">
+                        <p>perclos</p>
+                        <h3 class="ceeb1fd" id="total_fatigue"></h3>
+                    </div>
+                    <div class="widget-inline-box text-center fl">
+                        <p>blink</p>
+                        <h3 class="c24c9ff" id="blink_frequency"></h3>
+                    </div>
+                    <div class="widget-inline-box text-center fl">
+                        <p>yawning</p>
+                        <h3 class="cffff00" id="yawn_count"></h3>
+                    </div>
+                    <div class="widget-inline-box text-center fl">
+                        <p>head</p>
+                        <h3 class="c11e2dd" id="head_tilt"></h3>
+                    </div>
+                </div>
+            </div>
+
+            <div class="aleftboxtmidd">
+                <h2 class="tith2">Driving Status</h2>
+                <div class="lefttoday_tit height ht">
+                    <p class="fl"></p>
+                    <p class="fr"></p>
+                </div>
+                <div id="aleftboxtmidd" class="aleftboxtmiddcont"></div>
+            </div>
+
+            <div class="aleftboxtbott">
+                <h2 class="tith2">Button Setting</h2>
+                <div class="lefttoday_tit height">
+                    <p class="fl"></p>
+                    <p class="fr"></p>
+                </div>
+                <div id="settings-container" class="settings-container">
+                    <div class="setting-item">
+                        <label for="volume-slider">buzzer volume adjustment:</label>
+                        <input type="range" id="volume-slider" min="1" max="10" value="5">
+                        <span id="volume-value">5</span>
+                    </div>
+                    <div class="setting-item">
+                        <label for="sensitivity-slider">fatigue detection sensitivity:</label>
+                        <input type="range" id="sensitivity-slider" min="1" max="10" value="5">
+                        <span id="sensitivity-value">5</span>
+                    </div>
+                    <div class="setting-item">
+                        <label>LED status:</label>
+                        <button id="led-on-button">ON</button>
+                        <button id="led-off-button">OFF</button>
+                    </div>
+                    <div class="setting-item">
+                        <label>buzzer status:</label>
+                        <button id="buzzer-on-button">ON</button>
+                        <button id="buzzer-off-button">OFF</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- left1 end -->
+
+        <div class="mrbox">
+            <div class="mrbox_topmidd" style="width: 69%;">
+                <div class="amiddboxttop">
+                    <h2 class="tith2 pt1">Monitor Detection</h2>
+                        <div class="amiddboxttop_map fl" style="text-align: center;">
+                        <img id="stream" src="stream.mjpg" />
+                        </div>
+                </div>
+
+
+    
+                <div class="amidd_bott">
+                    <div class="amiddboxtbott1 fl">
+                        <h2 class="tith2 pt1">Temp and Hum Detection</h2>
+                        <div id="tempHumChart" class="amiddboxtbott1content"></div>
+                    </div>
+
+                    <div class="amiddboxtbott2 fl">
+                        <h2 class="tith2 pt1">Heartrate Detection</h2>
+                        <div id="heartRateChart" class="amiddboxtbott2content"></div>
+                    </div>
+                </div>
+                <!-- amidd_bott end -->
+            </div>
+            <!-- mrbox_top end -->
+
+            <div class="mrbox_top_right">
+                <div class="arightboxtop">
+                    <h2 class="tith2">Posture Recognition</h2>
+                    <div class="lefttoday_tit">
+                        <p class="fl"></p>
+                        <p class="fr"></p>
+                    </div>
+                    <div id="photo-display" class="photo-container">
+                        <img id="image"  alt="实时照片" />
+                        <p id="time"></p>
+                        <p id="label"></p>
+                    </div>
+                </div>
+
+                <div class="arightboxbott">
+                    <h2 class="tith2">Light Detection</h2>
+                    <div class="lefttoday_tit">
+                        <p class="fl"></p>
+                        <p class="fr"></p>
+                    </div>
+                    <div id="lightChart" class="arightboxbottcont"></div>
+                </div>
+            </div>
+        </div>
+        <!-- mrbox end -->
+    </div>
+    <!-- wpbox end -->
+
+    <script src="js/driving_status.js"></script>
+    <script src="js/light_environment.js"></script>
+    <script src="js/Heartrate_detection.js"></script>
+    <script src="js/tempHumChart.js"></script>
+    <script src="js/mqtt_image_update.js"></script>
+
+    
+</body>
+</html>

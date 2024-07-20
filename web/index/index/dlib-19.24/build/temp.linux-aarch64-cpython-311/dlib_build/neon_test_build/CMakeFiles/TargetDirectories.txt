@@ -1,0 +1,3 @@
+/home/pi2/video_transport/index/dlib-19.24/build/temp.linux-aarch64-cpython-311/dlib_build/neon_test_build/CMakeFiles/neon_test.dir
+/home/pi2/video_transport/index/dlib-19.24/build/temp.linux-aarch64-cpython-311/dlib_build/neon_test_build/CMakeFiles/edit_cache.dir
+/home/pi2/video_transport/index/dlib-19.24/build/temp.linux-aarch64-cpython-311/dlib_build/neon_test_build/CMakeFiles/rebuild_cache.dir

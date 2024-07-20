@@ -1,0 +1,57 @@
+Determining if the function cblas_ddot exists failed with the following output:
+Change Dir: /home/pi2/video_transport/index/dlib-19.24/build/CMakeFiles/CMakeScratch/TryCompile-dyno5v
+
+Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_58b05/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_58b05.dir/build.make CMakeFiles/cmTC_58b05.dir/build
+gmake[1]: Entering directory '/home/pi2/video_transport/index/dlib-19.24/build/CMakeFiles/CMakeScratch/TryCompile-dyno5v'
+Building C object CMakeFiles/cmTC_58b05.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=cblas_ddot -o CMakeFiles/cmTC_58b05.dir/CheckFunctionExists.c.o -c /home/pi2/video_transport/index/dlib-19.24/build/CMakeFiles/CMakeScratch/TryCompile-dyno5v/CheckFunctionExists.c
+Linking C executable cmTC_58b05
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_58b05.dir/link.txt --verbose=1
+/usr/bin/cc  -DCHECK_FUNCTION_EXISTS=cblas_ddot -rdynamic CMakeFiles/cmTC_58b05.dir/CheckFunctionExists.c.o -o cmTC_58b05 
+/usr/bin/ld: CMakeFiles/cmTC_58b05.dir/CheckFunctionExists.c.o: in function `main':
+CheckFunctionExists.c:(.text+0x10): undefined reference to `cblas_ddot'
+collect2: error: ld returned 1 exit status
+gmake[1]: *** [CMakeFiles/cmTC_58b05.dir/build.make:99: cmTC_58b05] Error 1
+gmake[1]: Leaving directory '/home/pi2/video_transport/index/dlib-19.24/build/CMakeFiles/CMakeScratch/TryCompile-dyno5v'
+gmake: *** [Makefile:127: cmTC_58b05/fast] Error 2
+
+
+
+Determining if the function sgesv exists failed with the following output:
+Change Dir: /home/pi2/video_transport/index/dlib-19.24/build/CMakeFiles/CMakeScratch/TryCompile-oikm9v
+
+Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_3ec41/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_3ec41.dir/build.make CMakeFiles/cmTC_3ec41.dir/build
+gmake[1]: Entering directory '/home/pi2/video_transport/index/dlib-19.24/build/CMakeFiles/CMakeScratch/TryCompile-oikm9v'
+Building C object CMakeFiles/cmTC_3ec41.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=sgesv -o CMakeFiles/cmTC_3ec41.dir/CheckFunctionExists.c.o -c /home/pi2/video_transport/index/dlib-19.24/build/CMakeFiles/CMakeScratch/TryCompile-oikm9v/CheckFunctionExists.c
+Linking C executable cmTC_3ec41
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_3ec41.dir/link.txt --verbose=1
+/usr/bin/cc  -DCHECK_FUNCTION_EXISTS=sgesv -rdynamic CMakeFiles/cmTC_3ec41.dir/CheckFunctionExists.c.o -o cmTC_3ec41 
+/usr/bin/ld: CMakeFiles/cmTC_3ec41.dir/CheckFunctionExists.c.o: in function `main':
+CheckFunctionExists.c:(.text+0x10): undefined reference to `sgesv'
+collect2: error: ld returned 1 exit status
+gmake[1]: *** [CMakeFiles/cmTC_3ec41.dir/build.make:99: cmTC_3ec41] Error 1
+gmake[1]: Leaving directory '/home/pi2/video_transport/index/dlib-19.24/build/CMakeFiles/CMakeScratch/TryCompile-oikm9v'
+gmake: *** [Makefile:127: cmTC_3ec41/fast] Error 2
+
+
+
+Determining if the function sgesv_ exists failed with the following output:
+Change Dir: /home/pi2/video_transport/index/dlib-19.24/build/CMakeFiles/CMakeScratch/TryCompile-GED1Nb
+
+Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_5d0dd/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_5d0dd.dir/build.make CMakeFiles/cmTC_5d0dd.dir/build
+gmake[1]: Entering directory '/home/pi2/video_transport/index/dlib-19.24/build/CMakeFiles/CMakeScratch/TryCompile-GED1Nb'
+Building C object CMakeFiles/cmTC_5d0dd.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=sgesv_ -o CMakeFiles/cmTC_5d0dd.dir/CheckFunctionExists.c.o -c /home/pi2/video_transport/index/dlib-19.24/build/CMakeFiles/CMakeScratch/TryCompile-GED1Nb/CheckFunctionExists.c
+Linking C executable cmTC_5d0dd
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_5d0dd.dir/link.txt --verbose=1
+/usr/bin/cc  -DCHECK_FUNCTION_EXISTS=sgesv_ -rdynamic CMakeFiles/cmTC_5d0dd.dir/CheckFunctionExists.c.o -o cmTC_5d0dd 
+/usr/bin/ld: CMakeFiles/cmTC_5d0dd.dir/CheckFunctionExists.c.o: in function `main':
+CheckFunctionExists.c:(.text+0x10): undefined reference to `sgesv_'
+collect2: error: ld returned 1 exit status
+gmake[1]: *** [CMakeFiles/cmTC_5d0dd.dir/build.make:99: cmTC_5d0dd] Error 1
+gmake[1]: Leaving directory '/home/pi2/video_transport/index/dlib-19.24/build/CMakeFiles/CMakeScratch/TryCompile-GED1Nb'
+gmake: *** [Makefile:127: cmTC_5d0dd/fast] Error 2
+
+
+
