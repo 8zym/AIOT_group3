@@ -24,6 +24,7 @@ It's an faculty-driving detection project.
 * Steering wheel, toy or real
 
 ### SOFTWARE
+![image](https://github.com/user-attachments/assets/e0c94531-4fe5-421f-a372-6bd25b146d61)
 
 ## OVERVIEW OF PROBLEM STATEMENT
 ### DESCRIPTION OF PROBLEM
