@@ -70,9 +70,6 @@ To apply the model in application, you need to some changes in prediction of the
 
 ## DETAILS ON IOT PROTOTYPE
 ![AIoTGroup3](https://github.com/user-attachments/assets/7d378fb6-1c7b-4956-97b1-59ff036c7f8d)
-### IOT CODE STRUCTURE
-![image](https://github.com/user-attachments/assets/4a5cd204-68bf-43c0-9e07-d9d1e0419555)
-
 
 ### MQTT
 #### Why we use MQTT?
@@ -90,7 +87,7 @@ Laptop used for AL and ML
 Web Page
 ![image](https://github.com/user-attachments/assets/ce297575-03c4-442a-ab99-d0b80adb7a35)
 
-#### EMQX rule engin
+#### EMQX rule engine
 Rules were created for transmitting datas to SQL.
 ![image](https://github.com/user-attachments/assets/8735ba98-2ed3-48ac-9f46-08f88544e955)
 
