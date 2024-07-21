@@ -107,31 +107,45 @@ The files are listed as below:
 
 |---- dlib_shape_predictor # The directory is imcomplete, you should download dlib model on your own
 ## Heart_rate_detection
-original data in dir data
+data dir for original data
 
-processed data in dir processed_data
+heart_rate_detection.2x dir is useless
 
-combined final data in dir processed_final_data
+model dir is for save trained models
 
-main.py is the file for training K-means model
+processed_data dir is for saving data in process
 
-predict.py is the file for using K-means model to predict
+processed_final_data is dir the final version of processed data
 
-other files are used for processing data
+DBSCAN_pca.py / H_PCA.py / Hierachical_cluster.py / PCA.py / main.py are all for training models
 
-kmeans_model.pkl is the trained model
+DFAα1.py / LF_div_HF.py / LF_div_HF_new.py / SampEn.py / data.py / mean_RR.py  are all for data processing
+
+predict.py are for predicting new data
+
+heart_rate_detection_2x.py uses mysql for communicating with raspberry data 
+
 ## weather_based_detection
-TBC
+
+main.py is useless
+
+files about indoor light simulation is in indoorlight_test dir
+
+files about weather simulation is in weather_test dir
+
+both dir contains data in training, training process, trained model and predict program.
 
 ## posture_based_analysis
 
-To obtain the training and testing data, run unzip state-farm-distracted-driver-detection in data dir
+(The data contains 4G, hard to upload, you can download through kaggle: kaggle competitions download -c state-farm-distracted-driver-detection(or through https://www.kaggle.com/competitions/state-farm-distracted-driver-detection/data)
 
-The trained data is stored in saved_model dir
+weights_best_vanilla.keras is the trained model
 
 main.py is used for training data 
 
 prediction.py is used for prediction
+
+poseture_based_analysis_2x.py connects with mysql and can communicate with raspberry pi data.
 
 To apply the model in application, you need to some changes in prediction of the function form and file name.
 
