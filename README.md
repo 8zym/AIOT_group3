@@ -52,6 +52,7 @@ We are going to build a IoT-based Smart Driver Monitor System(DMS) to monitor th
 
 
 ## Driver-Drowsiness-Detection
+the Facial Features Detection module utilizes the shape_predictor_68_face_landmarks model from the dlib library to detect 68 key facial points. This can be used to monitor driver behaviors such as blinking, yawning, and head posture, and subsequently derive a fatigue score. For detecting blinks, we use six specific points from the 68 key points to measure the eye aspect ratio (EAR). When the EAR is below a certain threshold, it is considered a blink. A complete blink cycle is recorded when the eye reopens. A similar method is applied for yawning by using a lip aspect ratio (LAR); when the LAR exceeds a threshold for a sustained period, a yawn is detected. For head tilt detection, the computation involves solving the perspective-n-point problem, obtaining the rotation matrix, and converting it to Euler angles. PERCLOS(Percentage of EyeIid CIosure over Time) is used to measure fatigue, representing the proportion of time the eyes are closed. We modified the traditional PERCLOS to include the proportion of time spent yawning and closing the eyes to compute the fatigue score.
 
 I've uploaded all files used in project developing:
 
@@ -107,6 +108,8 @@ The files are listed as below:
 
 |---- dlib_shape_predictor # The directory is imcomplete, you should download dlib model on your own
 ## Heart_rate_detection
+In the Heart Rate Detection module, we utilized the Warwick driving status database, which lacks fatigue labels. Based on a paper, we used several indicators from heart rate time-series analysis to determine fatigue and evaluated the clustering using the Silhouette Score. We assessed the performance of six different models and selected the K-means with PCA method based on runtime and clustering effectiveness.
+
 data dir for original data
 
 heart_rate_detection.2x dir is useless
@@ -126,6 +129,8 @@ predict.py are for predicting new data
 heart_rate_detection_2x.py uses mysql for communicating with raspberry data 
 
 ## weather_based_detection
+In the Environmental Detection module, we studied the impact of environmental factors on human sensations. For analyzing light intensity and its correlation with eye fatigue, we used a random forest regression model. We split the existing dataset into training and testing sets, set the number of trees to 100, and optimized several parameters, achieving satisfactory regression results. We modeled the relationship between light intensity and human sensation, summarizing its correlation with the eye-opening threshold through simulated testing. For temperature and humidity analysis, we used a decision tree model to categorize human comfort levels into three intervals, achieving good fitting results. Each interval corresponded to different fatigue thresholds, accounting for environmental factors.
+
 
 main.py is useless
 
@@ -136,6 +141,7 @@ files about weather simulation is in weather_test dir
 both dir contains data in training, training process, trained model and predict program.
 
 ## posture_based_analysis
+For Posture Detection, we employed a three-layer CNN neural network. We trained the model using the Kaggle dataset, achieving a classification accuracy of 0.98 after training. However, due to differences between the Kaggle dataset and the actual environment, we conducted additional sampling to fine-tune the CNN. During the fine-tuning process, we encountered overfitting issues. We believe this was due to model parameter settings and the insufficient size of our dataset. Unfortunately, due to time constraints, our model has not yet reached its optimal state and still exhibits overfitting.
 
 (The data contains 4G, hard to upload, you can download through kaggle: kaggle competitions download -c state-farm-distracted-driver-detection(or through https://www.kaggle.com/competitions/state-farm-distracted-driver-detection/data)
 
