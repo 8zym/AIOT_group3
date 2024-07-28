@@ -2,12 +2,14 @@
 --by SWS3025 Group3
 ---
 Group3 Team members:
-* ZHENG LIHAN (group leader)
+* ZHENG LIHAN (GROUP LEADER)
 * ZHENG YINGMING
 * LI YINGZHUO
 * MA MENGMENG
 ---
-It's an faculty-driving detection project.
+It's an faculty-driving detection project. We completed this project at the National University of Singapore during the 2024 NUS SoC Summer Workshop.
+---
+## POSTER
 
 ![AIoTGroup3 Portrait Poster (Template A1) pptx](https://github.com/user-attachments/assets/8f26c8a9-6ae5-43e2-af77-03144a16396e)
 
