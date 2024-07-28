@@ -23,6 +23,7 @@ It's an faculty-driving detection project.
   * Light sensor
 * Steering wheel, toy or real
 
+---
 ### SOFTWARE
 #### Raspberry Pi 1
 * posture_camera_publish.py
@@ -43,6 +44,7 @@ It's an faculty-driving detection project.
 #### Micro:bit
 * alarm_subscribe.js
 
+---
 ## OVERVIEW OF PROBLEM STATEMENT
 ### DESCRIPTION OF PROBLEM
 According to a survey by the American Foundation for Auto Traffic Safety, fatigued drivers account for up to 21 percent of traffic fatalities in the United States. To decline this proportion, Lots of researchers have focused on detecting fatigue driving in the past few decades, the latest progress includes active detection methods and passive detection methods. Among these methods, we are attracted by the active detection method based on facial features and driver posture. We want to use them as reference in combination with the AIoT.
@@ -50,7 +52,7 @@ According to a survey by the American Foundation for Auto Traffic Safety, fatigu
 We are going to build a IoT-based Smart Driver Monitor System(DMS) to monitor the degree of fatigue by collecting multimodal sensor and camera data and transporting the data through the IoT system, using the AI and machine learning algorithms to analyze the data and train the model, giving reminders and warnings of fatigued driving through fronted applications so that the drivers can keep a sober mind and proper driving posture. We believe that DMS can fulfilling an important role in safe driving. In organisational context level, DMS can reduce the incidence of traffic accidents in the whole society. In consumer level, DMS would be the guarantee of driving safety.
 ![image](https://github.com/user-attachments/assets/b9683a95-9bcc-4d78-9dfa-948107383790)
 
-
+---
 ## DRIVER-DROWSINESS-DETECTION
 the Facial Features Detection module utilizes the shape_predictor_68_face_landmarks model from the dlib library to detect 68 key facial points. This can be used to monitor driver behaviors such as blinking, yawning, and head posture, and subsequently derive a fatigue score. For detecting blinks, we use six specific points from the 68 key points to measure the eye aspect ratio (EAR). When the EAR is below a certain threshold, it is considered a blink. A complete blink cycle is recorded when the eye reopens. A similar method is applied for yawning by using a lip aspect ratio (LAR); when the LAR exceeds a threshold for a sustained period, a yawn is detected. For head tilt detection, the computation involves solving the perspective-n-point problem, obtaining the rotation matrix, and converting it to Euler angles. PERCLOS(Percentage of EyeIid CIosure over Time) is used to measure fatigue, representing the proportion of time the eyes are closed. We modified the traditional PERCLOS to include the proportion of time spent yawning and closing the eyes to compute the fatigue score.
 
